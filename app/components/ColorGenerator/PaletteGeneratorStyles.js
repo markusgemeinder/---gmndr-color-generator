@@ -6,35 +6,35 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0.6rem auto;
-  margin-right: 1.6rem;
+  margin: 0 auto;
+  margin-right: 2rem;
   padding: 1.2rem 1.4rem;
   width: 92%;
-  max-width: 600px;
+  max-width: 22rem;
   background-color: var(--color-background-light);
   border-radius: 8px;
   border: 1px solid var(--color-border);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 
-  /* Mobile First & Tablets im Hochformat */
-  @media (min-width: 600px) {
+  /* Smartphones im Querformat */
+  @media (min-width: 600px) and (max-width: 999px) and (orientation: landscape) {
     width: 88%;
     max-width: 32rem;
-  }
-
-  /* Smartphones im Querformat */
-  @media (min-width: 600px) and (max-width: 1024px) and (orientation: landscape) {
-    width: 88%;
-    max-width: 24rem;
     margin: 0.6rem;
     margin-right: 6rem;
-    padding: 1rem;
+  }
+
+  /* Tablets im Hochformat */
+  @media (min-width: 600px) and (max-width: 999px) and (orientation: portrait) {
+    width: 80%;
+    max-width: 32rem;
+    margin: 0 auto;
   }
 
   /* Desktop & Tablets im Querformat */
-  @media (min-width: 1025px) {
-    width: 80%;
-    max-width: 40rem;
+  @media (min-width: 1000px) {
+    max-width: 36rem;
+    margin: 0 auto;
   }
 `;
 

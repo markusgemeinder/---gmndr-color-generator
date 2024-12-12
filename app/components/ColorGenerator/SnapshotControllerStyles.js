@@ -4,24 +4,32 @@ import styled from 'styled-components';
 
 export const SnapshotContainer = styled.div`
   position: fixed;
-  top: 5rem;
+  top: 4.6rem;
   right: 0.7rem;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.4rem;
   z-index: 4;
 
-  /* Für größere Geräte */
-  @media (min-width: 768px) and (min-height: 768px) {
-    top: 7rem;
-    right: 2rem;
+  /* Smartphones im Querformat */
+  @media (min-width: 600px) and (max-width: 999px) and (orientation: landscape) {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-items: center;
+    top: 5rem;
+    right: 1.4rem;
   }
 
-  /* Für Smartphones im Querformat */
-  @media (max-width: 767px) and (orientation: landscape) {
-    top: 4.6rem;
-    right: 6.6rem;
-    gap: 0.2rem;
+  /* Tablets im Hochformat */
+  @media (min-width: 600px) and (max-width: 999px) and (orientation: portrait) {
+    top: 7rem;
+    right: 2.4rem;
+  }
+
+  /* Desktop & Tablets im Querformat */
+  @media (min-width: 1000px) {
+    top: 7rem;
+    right: 6rem;
   }
 `;
 
@@ -40,7 +48,7 @@ export const SnapshotButton = styled.button.withConfig({
     isSnapshotLimitReached ? 'var(--color-button-warning)' : 'var(--color-button-secondary)'};
   width: 60px;
   height: 48px;
-  padding: 0.6rem;
+  padding: 0.8rem;
 
   &:hover {
     background-color: ${({ isSnapshotLimitReached }) =>
@@ -52,9 +60,17 @@ export const SnapshotButton = styled.button.withConfig({
     color: var(--color-white);
   }
 
-  /* Für größere Geräte */
-  @media (min-width: 768px) {
-    padding: 0.8rem;
+  @media (min-width: 600px) and (max-width: 999px) and (orientation: landscape) {
+    grid-column: span 2;
+    width: 60px;
+
+    svg {
+      font-size: 1.4rem;
+      color: var(--color-white);
+    }
+  }
+
+  @media (min-width: 600px) and (max-width: 999px) and (orientation: portrait) {
     width: 72px;
     height: 56px;
 
@@ -64,25 +80,14 @@ export const SnapshotButton = styled.button.withConfig({
     }
   }
 
-  /* Querformat für Smartphones */
-  @media (max-width: 767px) and (orientation: landscape) {
-    width: 56px;
-    height: 48px;
-    padding: 0.6rem;
-
-    svg {
-      font-size: 1.2rem;
-    }
-  }
-
-  /* Querformat für Tablets */
-  @media (min-width: 768px) and (orientation: landscape) {
-    width: 80px;
-    height: 64px;
+  @media (min-width: 1000px) {
     padding: 0.8rem;
+    width: 72px;
+    height: 56px;
 
     svg {
-      font-size: 2rem;
+      font-size: 1.8rem;
+      color: var(--color-white);
     }
   }
 `;
@@ -93,6 +98,10 @@ export const UndoButton = styled(SnapshotButton)`
   &:hover {
     background-color: var(--color-button-secondary-light-hover);
   }
+
+  @media (min-width: 600px) and (max-width: 999px) and (orientation: landscape) {
+    grid-column: 1;
+  }
 `;
 
 export const RedoButton = styled(SnapshotButton)`
@@ -100,6 +109,10 @@ export const RedoButton = styled(SnapshotButton)`
 
   &:hover {
     background-color: var(--color-button-secondary-light-hover);
+  }
+
+  @media (min-width: 600px) and (max-width: 999px) and (orientation: landscape) {
+    grid-column: 2;
   }
 `;
 
@@ -112,7 +125,7 @@ export const DeleteButton = styled.button`
   cursor: pointer;
   width: 60px;
   height: 48px;
-  padding: 0.6rem;
+  padding: 0.8rem;
   background-color: var(--color-button-secondary-light);
 
   &:hover {
@@ -124,9 +137,7 @@ export const DeleteButton = styled.button`
     color: var(--color-white);
   }
 
-  /* Für größere Geräte */
-  @media (min-width: 768px) and (min-height: 768px) {
-    padding: 0.8rem;
+  @media (min-width: 600px) and (max-width: 999px) and (orientation: portrait) {
     width: 72px;
     height: 56px;
 
@@ -136,25 +147,14 @@ export const DeleteButton = styled.button`
     }
   }
 
-  /* Querformat für Smartphones */
-  @media (max-width: 767px) and (orientation: landscape) {
-    width: 56px;
-    height: 48px;
-    padding: 0.6rem;
-
-    svg {
-      font-size: 1.2rem;
-    }
-  }
-
-  /* Querformat für Tablets */
-  @media (min-width: 768px) and (orientation: landscape) {
-    width: 80px;
-    height: 64px;
+  @media (min-width: 1000px) {
     padding: 0.8rem;
+    width: 72px;
+    height: 56px;
 
     svg {
-      font-size: 2rem;
+      font-size: 1.8rem;
+      color: var(--color-white);
     }
   }
 `;

@@ -15,23 +15,31 @@ export const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1.6rem;
-  height: 5rem;
+  padding: 0 0.8rem;
+  height: 3.4rem;
 
-  @media (max-width: 768px) {
-    padding: 0 0.75rem;
-    height: 4rem;
+  /* Smartphones im Querformat */
+  @media (min-width: 600px) and (max-width: 999px) and (orientation: landscape) {
+    height: 3.8rem;
+    padding: 0 1.6rem;
+  }
+
+  /* Tablets im Hochformat */
+  @media (min-width: 600px) and (max-width: 999px) and (orientation: portrait) {
+    padding: 0 1.6rem;
+    height: 5rem;
+  }
+
+  /* Desktop & Tablets im Querformat */
+  @media (min-width: 1000px) {
+    padding: 0 1.6rem;
+    height: 5rem;
   }
 `;
 
 export const BrandContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 1.4rem;
-
-  @media (max-width: 768px) {
-    gap: 0.6rem;
-  }
 `;
 
 export const ShakeAnimation = styled.div`
@@ -57,51 +65,38 @@ export const ShakeAnimation = styled.div`
   }
 `;
 
-// export const Logo = styled.div`
-//   display: flex;
-//   align-items: center;
-//   flex-direction: column;
-//   cursor: pointer;
-// `;
-
-// export const Title1 = styled.div`
-//   font-size: 0.75rem;
-//   font-weight: 700;
-
-//   @media (max-width: 768px) {
-//     font-size: 0.6rem;
-//   }
-// `;
-
-// export const Title2 = styled.div`
-//   font-size: 1.2rem;
-//   font-weight: 700;
-
-//   @media (max-width: 768px) {
-//     font-size: 1rem;
-//   }
-// `;
-
 export const NavContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.6rem;
+
+  @media (min-width: 600px) and (max-width: 999px) and (orientation: portrait) {
+    gap: 1rem;
+  }
+
+  @media (min-width: 1000px) {
+    gap: 1rem;
+  }
 `;
 
 export const NavList = styled.ul`
-  display: flex;
-  gap: 1rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  display: none;
 
-  @media (max-width: 768px) {
-    display: none;
+  @media (min-width: 1000px) {
+    display: flex;
+    /* gap: 0.4rem; */
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
 `;
 
 export const NavItem = styled.li`
   list-style: none;
+
+  @media (min-width: 1000px) {
+    margin: 0 0.5rem;
+  }
 `;
 
 export const NavLink = styled(Link)`
@@ -119,19 +114,25 @@ export const BurgerMenuButton = styled.button`
   border: none;
   color: var(--color-header-footer-text);
   cursor: pointer;
-  font-size: 1.5rem;
-  display: none;
-  width: 42px;
-  height: 42px;
+  font-size: 1.2rem;
+  display: block;
+  width: 36px;
+  height: 36px;
 
-  @media (max-width: 768px) {
-    display: block;
+  @media (min-width: 600px) and (max-width: 999px) and (orientation: portrait) {
+    font-size: 1.5rem;
+    width: 42px;
+    height: 42px;
+  }
+
+  @media (min-width: 1000px) {
+    display: none;
   }
 `;
 
 export const BurgerMenuButtonSvg = styled.svg`
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   stroke: var(--color-header-footer-text);
   stroke-width: 2;
   stroke-linecap: round;
@@ -139,33 +140,56 @@ export const BurgerMenuButtonSvg = styled.svg`
   transition: transform 0.3s ease;
 
   transform: ${({ $isOpen }) => ($isOpen ? 'rotate(-25deg)' : 'rotate(0deg)')};
+
+  @media (min-width: 600px) and (max-width: 999px) and (orientation: portrait) {
+    width: 42px;
+    height: 42px;
+  }
 `;
 
 export const BurgerMenuNavigation = styled.nav`
   position: fixed;
-  top: 4rem;
+  top: 3.4rem;
   left: 0;
-  width: 56%;
+  width: 60%;
   height: 100vh;
   background-color: var(--color-burger-menu-background);
   transform: ${({ $isOpen }) => ($isOpen ? 'translateX(0)' : 'translateX(-100%)')};
   transition: transform 0.3s ease-in-out;
   z-index: 10;
 
-  @media (min-width: 768px) {
+  @media (min-width: 600px) and (max-width: 999px) and (orientation: landscape) {
+    top: 3.8rem;
+    width: 40%;
+  }
+
+  @media (min-width: 600px) and (max-width: 999px) and (orientation: portrait) {
+    top: 5rem;
+    width: 40%;
+  }
+
+  @media (min-width: 1000px) {
     display: none;
   }
 `;
 
 export const BurgerMenuList = styled.ul`
   list-style: none;
-  padding: 1rem;
+  padding: 0.8rem;
   margin: 0;
+
+  @media (min-width: 600px) and (max-width: 999px) and (orientation: portrait) {
+    padding: 1.6rem;
+  }
 `;
 
 export const BurgerMenuItem = styled.li`
-  padding: 1rem;
+  padding: 0.6rem 1rem;
   text-align: left;
+
+  @media (min-width: 600px) and (max-width: 999px) and (orientation: portrait) {
+    padding: 0.8rem 1rem;
+  }
 `;
 
 export const Overlay = styled.div`

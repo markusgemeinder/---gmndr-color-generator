@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 // /app/components/ColorGenerator/SnapshotController.js
 
 import { useState, useEffect, useContext } from 'react';
