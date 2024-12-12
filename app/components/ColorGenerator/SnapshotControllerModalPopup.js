@@ -31,7 +31,7 @@ const ModalContent = styled.div`
   justify-content: center;
   gap: 1.2rem;
   width: 90%;
-  max-width: 600px;
+  max-width: 22rem;
 
   @media (min-width: 768px) {
     width: 80%;
