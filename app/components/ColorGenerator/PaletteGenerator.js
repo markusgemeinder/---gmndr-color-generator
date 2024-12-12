@@ -36,7 +36,7 @@ import { getText } from '@/lib/languageLibrary';
 const defaults = {
   hex: '#456789',
   prefix: '--color-',
-  suffix: 'test',
+  suffix: 'primary',
   sortOrder: 'asc',
   checkedValues: [
     0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000,
@@ -82,18 +82,36 @@ function paletteReducer(state, action) {
     case 'SET_GENERATED_PALETTE':
       return { ...state, generatedPalette: action.value };
     case 'LOAD_SNAPSHOT':
-      return { ...action.payload }; // Snapshot laden
+      return { ...action.payload };
     default:
       return state;
   }
 }
 
-// ===== Formular-Daten aus LocalStorage laden =====
-const formData = loadFormDataFromLocalStorage() || defaults;
+// ===== Formulardaten auf Validität prüfen =====
+function validateFormData(data) {
+  if (!data) return defaults;
+
+  const isValid =
+    typeof data.hex === 'string' &&
+    data.hex.length > 0 &&
+    typeof data.prefix === 'string' &&
+    typeof data.suffix === 'string' &&
+    ['asc', 'desc'].includes(data.sortOrder) &&
+    Array.isArray(data.checkedValues) &&
+    typeof data.selectedOption === 'string' &&
+    typeof data.darkLimit === 'number' &&
+    typeof data.brightLimit === 'number';
+
+  return isValid ? data : defaults;
+}
+
+// ===== Initiale Formular-Daten aus LocalStorage laden =====
+const initialFormData = validateFormData(loadFormDataFromLocalStorage()) || defaults;
 
 export default function PaletteGenerator() {
   const { language } = useContext(LanguageContext);
-  const [state, dispatch] = useReducer(paletteReducer, formData);
+  const [state, dispatch] = useReducer(paletteReducer, initialFormData);
 
   // ===== Sprachtext-Abfrage
   const getLanguageText = (key) => {
@@ -106,7 +124,8 @@ export default function PaletteGenerator() {
 
   // ===== Formularzustand in LocalStorage speichern =====
   useEffect(() => {
-    saveFormDataToLocalStorage(state);
+    const validatedData = validateFormData(state);
+    saveFormDataToLocalStorage(validatedData);
   }, [state]);
 
   // ===== Snapshot anwenden =====
