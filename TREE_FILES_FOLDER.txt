@@ -44,7 +44,7 @@
     44	├── next.config.mjs
     45	├── package.json
     46	├── postcss.config.mjs
-    47	├── tailwind.config.js.bak
+    47	├── tailwind.config.js
     48	└── utils
     49	    ├── getLanguageFromCookies.js
     50	    ├── localStorageUtils.js

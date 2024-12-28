@@ -21,12 +21,13 @@ import {
   CheckboxLabel,
   CheckboxInput,
   GeneratePaletteButton,
+  ColorPageDemoButton,
   ResetFormButton,
   CopyPaletteButton,
   PaletteWrapper,
   PaletteOutput,
 } from './PaletteGeneratorStyles';
-import { FaCopy, FaSlidersH, FaRedo } from 'react-icons/fa';
+import { FaCopy, FaSlidersH, FaRedo, FaTint } from 'react-icons/fa';
 import { generateMonochromePalette, getColorPreview } from '@/utils/paletteGeneratorUtils';
 import SnapshotController from './SnapshotController';
 import { loadFormDataFromLocalStorage, saveFormDataToLocalStorage } from '@/utils/localStorageUtils';
@@ -342,6 +343,10 @@ export default function PaletteGenerator() {
           ))}
         </CheckboxGroup>
       </InputGroup>
+
+      <ColorPageDemoButton width='100%' onClick={handleGeneratePalette}>
+        <FaTint /> {getLanguageText('demoButton')}
+      </ColorPageDemoButton>
 
       <GeneratePaletteButton width='100%' onClick={handleGeneratePalette}>
         <FaSlidersH /> {getLanguageText('generateButton')}

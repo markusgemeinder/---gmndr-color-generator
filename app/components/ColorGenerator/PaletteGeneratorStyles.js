@@ -306,6 +306,8 @@ export const GeneratePaletteButton = styled(Button)`
   }
 `;
 
+export const ColorPageDemoButton = styled(GeneratePaletteButton)``;
+
 export const ResetFormButton = styled(Button)`
   width: 15.6rem;
   background-color: var(--color-button-secondary-light);
