@@ -11,14 +11,14 @@ export default function ThemeProvider({ children }) {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const storedTheme = localStorage.getItem('theme') || 'light';
+      const storedTheme = localStorage.getItem('cpg_theme') || 'light';
       setTheme(storedTheme);
       document.documentElement.setAttribute('data-theme', storedTheme);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('theme', theme);
+    localStorage.setItem('cpg_theme', theme);
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 

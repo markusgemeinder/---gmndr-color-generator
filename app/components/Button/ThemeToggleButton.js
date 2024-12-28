@@ -61,7 +61,7 @@ export default function ThemeToggleButton() {
     return getText('theme_toggle_button', key, language);
   };
 
-  const ariaLabel = getLanguageText('aria-label');
+  const ariaLabel = getLanguageText('aria_label_theme');
 
   return (
     <ToggleButton type='button' onClick={toggleTheme} aria-label={ariaLabel}>

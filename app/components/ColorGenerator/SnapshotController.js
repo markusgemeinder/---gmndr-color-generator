@@ -45,7 +45,7 @@ export default function SnapshotController({ state, onApplySnapshot, resetForm }
 
   // ===== Sprachtext-Abfrage
   const getLanguageText = (key) => {
-    return getText('snapshotController', key, language);
+    return getText('snapshot_controller', key, language);
   };
 
   // ===== Derived Variables
@@ -114,13 +114,13 @@ export default function SnapshotController({ state, onApplySnapshot, resetForm }
   // ===== Snapshot Management
   const handleSnapshot = () => {
     if (isSnapshotLimitReached) {
-      setInfoModalMessage(getLanguageText('snapshotLimitReached'));
+      setInfoModalMessage(getLanguageText('modal_snapshot_limit_reached'));
       setModalType('info');
       return setShowModal(true);
     }
 
     if (isSnapshotDuplicate(snapshots, formData) || !hasFormDataChanged) {
-      setInfoModalMessage(getLanguageText('snapshotAlreadyExists'));
+      setInfoModalMessage(getLanguageText('modal_snapshot_already_exists'));
       setModalType('info');
       return setShowModal(true);
     }
@@ -138,7 +138,7 @@ export default function SnapshotController({ state, onApplySnapshot, resetForm }
     saveLastUsedSnapshotIndexToLocalStorage(lastUsedSnapshotIndex + 1);
 
     if (newSnapshots.length >= SNAPSHOT_LIMIT) {
-      setInfoModalMessage(getLanguageText('snapshotSavedMaxReached'));
+      setInfoModalMessage(getLanguageText('modal_snapshot_saved_max_reached'));
       setModalType('info');
       setShowModal(true);
     }
@@ -151,7 +151,7 @@ export default function SnapshotController({ state, onApplySnapshot, resetForm }
 
   const handleDeleteCurrent = () => {
     if (snapshots.length === 0) {
-      setInfoModalMessage(getLanguageText('noSnapshotToDelete'));
+      setInfoModalMessage(getLanguageText('modal_no_snapshot_to_delete'));
       setModalType('info');
       return setShowModal(true);
     }
@@ -163,7 +163,7 @@ export default function SnapshotController({ state, onApplySnapshot, resetForm }
       return setShowModal(true);
     }
 
-    setInfoModalMessage(getLanguageText('deleteCurrentSnapshot'));
+    setInfoModalMessage(getLanguageText('modal_delete_current_snapshot'));
     setModalType('decision-delete-current');
     setResetToLastSnapshot(false);
     setShowModal(true);
@@ -199,12 +199,12 @@ export default function SnapshotController({ state, onApplySnapshot, resetForm }
 
   const handleDeleteAll = () => {
     if (snapshots.length === 0) {
-      setInfoModalMessage(getLanguageText('noSnapshotsToDelete'));
+      setInfoModalMessage(getLanguageText('modal_no_snapshots_to_delete'));
       setModalType('info');
       return setShowModal(true);
     }
 
-    setInfoModalMessage(getLanguageText('deleteAllSnapshots'));
+    setInfoModalMessage(getLanguageText('modal_delete_all_snapshots'));
     setModalType('decision-delete-all');
     setShowModal(true);
   };
@@ -243,7 +243,7 @@ export default function SnapshotController({ state, onApplySnapshot, resetForm }
   };
 
   const undoRedoModal = (direction) => {
-    setInfoModalMessage(getLanguageText('formDataNotSaved'));
+    setInfoModalMessage(getLanguageText('modal_form_data_not_saved'));
     setModalType('decision-undo-redo');
     setModalUndoRedoDirection(direction);
     setShowModal(true);
@@ -261,22 +261,31 @@ export default function SnapshotController({ state, onApplySnapshot, resetForm }
   return (
     <>
       <SnapshotContainer>
-        <SnapshotButton onClick={handleSnapshot} isSnapshotLimitReached={isSnapshotLimitReached}>
+        <SnapshotButton
+          onClick={handleSnapshot}
+          ariaLabel={getLanguageText('aria_label_snapshot')}
+          isSnapshotLimitReached={isSnapshotLimitReached}>
           {snapshotInProgress ? <FaCheck /> : snapshots.length >= SNAPSHOT_LIMIT ? <FaStackOverflow /> : <FaCamera />}
           <ButtonText>{snapshots.length}</ButtonText>
         </SnapshotButton>
-        <UndoButton onClick={() => handleUndoRedo('undo')} disabled={undoSteps === 0}>
+        <UndoButton
+          onClick={() => handleUndoRedo('undo')}
+          ariaLabel={getLanguageText('aria_label_undo')}
+          disabled={undoSteps === 0}>
           <FaUndo />
           <ButtonText>{undoSteps}</ButtonText>
         </UndoButton>
-        <RedoButton onClick={() => handleUndoRedo('redo')} disabled={redoSteps === 0}>
+        <RedoButton
+          onClick={() => handleUndoRedo('redo')}
+          ariaLabel={getLanguageText('aria_label_redo')}
+          disabled={redoSteps === 0}>
           <FaRedo />
           <ButtonText>{redoSteps}</ButtonText>
         </RedoButton>
-        <DeleteButton onClick={handleDeleteCurrent}>
+        <DeleteButton onClick={handleDeleteCurrent} ariaLabel={getLanguageText('aria_label_delete_current')}>
           <FaTimes />
         </DeleteButton>
-        <DeleteButton onClick={handleDeleteAll}>
+        <DeleteButton onClick={handleDeleteAll} ariaLabel={getLanguageText('aria_label_delete_all')}>
           <FaTrash />
         </DeleteButton>
       </SnapshotContainer>

@@ -11,7 +11,7 @@ import MainContainer from '@/app/components/Layout/MainContainer';
 import { LanguageProvider } from '@/app/components/LanguageProvider';
 
 export const metadata = {
-  title: '#GMNDR Color Generator',
+  title: '#GMNDR Color Palette Generator',
   description: 'Created with Next.js 14 | Erstellt mit Next.js 14',
   icons: {
     icon: '/favicon/gmndr.ico',

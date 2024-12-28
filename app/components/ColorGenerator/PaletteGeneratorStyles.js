@@ -326,5 +326,5 @@ export const CopyPaletteButton = styled(Button)`
 `;
 
 export const Spacer = styled.div`
-  height: 0.4rem;
+  height: 1rem;
 `;

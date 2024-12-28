@@ -109,7 +109,7 @@ export default function SnapshotControllerModalPopup({ showModal, modalType, inf
 
   // ===== Sprachtext-Abfrage
   const getLanguageText = (key) => {
-    return getText('snapshotControllerModal', key, language);
+    return getText('snapshot_controller', key, language);
   };
 
   if (!showModal) return null;
@@ -119,26 +119,26 @@ export default function SnapshotControllerModalPopup({ showModal, modalType, inf
       case 'decision-delete-current':
         return (
           <>
-            <ModalConfirmButton onClick={onConfirm}>{getLanguageText('modalConfirm')}</ModalConfirmButton>
-            <ModalCancelButton onClick={onCancel}>{getLanguageText('modalCancel')}</ModalCancelButton>
+            <ModalConfirmButton onClick={onConfirm}>{getLanguageText('modal_confirm')}</ModalConfirmButton>
+            <ModalCancelButton onClick={onCancel}>{getLanguageText('modal_cancel')}</ModalCancelButton>
           </>
         );
       case 'decision-delete-all':
         return (
           <>
-            <ModalConfirmButton onClick={onConfirm}>{getLanguageText('modalConfirm')}</ModalConfirmButton>
-            <ModalCancelButton onClick={onCancel}>{getLanguageText('modalCancel')}</ModalCancelButton>
+            <ModalConfirmButton onClick={onConfirm}>{getLanguageText('modal_confirm')}</ModalConfirmButton>
+            <ModalCancelButton onClick={onCancel}>{getLanguageText('modal_cancel')}</ModalCancelButton>
           </>
         );
       case 'decision-undo-redo':
         return (
           <>
-            <ModalConfirmButton onClick={onConfirm}>{getLanguageText('modalConfirm')}</ModalConfirmButton>
-            <ModalCancelButton onClick={onCancel}>{getLanguageText('modalCancel')}</ModalCancelButton>
+            <ModalConfirmButton onClick={onConfirm}>{getLanguageText('modal_confirm')}</ModalConfirmButton>
+            <ModalCancelButton onClick={onCancel}>{getLanguageText('modal_cancel')}</ModalCancelButton>
           </>
         );
       case 'info':
-        return <ModalConfirmButton onClick={onCancel}>{getLanguageText('modalOk')}</ModalConfirmButton>;
+        return <ModalConfirmButton onClick={onCancel}>{getLanguageText('modal_ok')}</ModalConfirmButton>;
       default:
         return null;
     }
