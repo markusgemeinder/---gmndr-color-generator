@@ -22,7 +22,7 @@ export function getLocalStorage(key) {
 
 // Speichern der Formulardaten im LocalStorage
 export function saveFormDataToLocalStorage(state) {
-  setLocalStorage('pg_formData', {
+  setLocalStorage('cpg_formData', {
     hex: state.hex,
     prefix: state.prefix,
     suffix: state.suffix,
@@ -37,7 +37,7 @@ export function saveFormDataToLocalStorage(state) {
 // Laden der Formulardaten aus dem LocalStorage
 export function loadFormDataFromLocalStorage() {
   return (
-    getLocalStorage('pg_formData') || {
+    getLocalStorage('cpg_formData') || {
       hex: '',
       prefix: '',
       suffix: '',
@@ -52,30 +52,30 @@ export function loadFormDataFromLocalStorage() {
 
 // Speichern der Snapshots im LocalStorage
 export function saveSnapshotsToLocalStorage(snapshots) {
-  setLocalStorage('pg_snapshots', snapshots);
-  // Entferne die Speicherung der 'pg_snapshotCount' (wird nicht mehr benötigt)
+  setLocalStorage('cpg_snapshots', snapshots);
+  // Entferne die Speicherung der 'cpg_snapshotCount' (wird nicht mehr benötigt)
 }
 
 // Laden der Snapshots aus dem LocalStorage
 export function loadSnapshotsFromLocalStorage() {
-  const snapshots = getLocalStorage('pg_snapshots') || []; // Standardwert: leeres Array
+  const snapshots = getLocalStorage('cpg_snapshots') || []; // Standardwert: leeres Array
   return { snapshots };
 }
 
 // Speichern des letzten verwendeten Snapshots
 export function saveLastUsedSnapshotToLocalStorage(snapshot) {
-  setLocalStorage('pg_lastUsedSnapshot', snapshot);
+  setLocalStorage('cpg_lastUsedSnapshot', snapshot);
 }
 
 // Funktion zum Laden des zuletzt verwendeten Snapshots
 export function loadLastUsedSnapshotFromLocalStorage() {
-  return getLocalStorage('pg_lastUsedSnapshot') || null;
+  return getLocalStorage('cpg_lastUsedSnapshot') || null;
 }
 
 // Funktion zum Löschen des lastUsedSnapshot aus dem LocalStorage
 export function deleteLastUsedSnapshotFromLocalStorage() {
   try {
-    localStorage.removeItem('pg_lastUsedSnapshot');
+    localStorage.removeItem('cpg_lastUsedSnapshot');
   } catch (error) {
     console.error('Fehler beim Löschen von lastUsedSnapshot aus localStorage:', error);
   }
@@ -83,10 +83,10 @@ export function deleteLastUsedSnapshotFromLocalStorage() {
 
 // Speichern des letzten verwendeten Snapshot-Index
 export function saveLastUsedSnapshotIndexToLocalStorage(index) {
-  setLocalStorage('pg_lastUsedSnapshotIndex', index);
+  setLocalStorage('cpg_lastUsedSnapshotIndex', index);
 }
 
 // Laden des letzten verwendeten Snapshot-Index
 export function loadLastUsedSnapshotIndexFromLocalStorage() {
-  return getLocalStorage('pg_lastUsedSnapshotIndex') || 0;
+  return getLocalStorage('cpg_lastUsedSnapshotIndex') || 0;
 }

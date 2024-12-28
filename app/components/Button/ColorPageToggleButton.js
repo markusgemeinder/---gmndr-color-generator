@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import LanguageContext from '@/app/components/LanguageProvider';
 import { getText } from '@/lib/languageLibrary';

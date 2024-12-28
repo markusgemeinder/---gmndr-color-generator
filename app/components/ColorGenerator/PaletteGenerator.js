@@ -114,7 +114,10 @@ const initialFormData = validateFormData(loadFormDataFromLocalStorage()) || defa
 export default function PaletteGenerator() {
   const { language } = useContext(LanguageContext);
   const [state, dispatch] = useReducer(paletteReducer, initialFormData);
-  const [isPageColorActive, setIsPageColorActive] = useState(false);
+  const [isPageColorActive, setIsPageColorActive] = useState(() => {
+    const storedValue = localStorage.getItem('cpg_autoColorPage');
+    return storedValue !== null ? JSON.parse(storedValue) : false;
+  });
 
   // ===== Sprachtext-Abfrage
   const getLanguageText = (key) => {
@@ -157,6 +160,9 @@ export default function PaletteGenerator() {
   const handleTogglePageColors = () => {
     setIsPageColorActive((prev) => {
       const newValue = !prev;
+
+      // Speichere den neuen Wert in den Local Storage
+      localStorage.setItem('cpg_autoColorPage', JSON.stringify(newValue));
 
       if (newValue) {
         // Aktivieren: Aktuellen Zustand einfärben
