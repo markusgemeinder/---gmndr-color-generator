@@ -50,15 +50,15 @@ const defaults = {
 };
 
 const selectorOptions = {
-  selectorOptionDefault: [
+  selector_option_default: [
     0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000,
   ],
-  selectorOption1: [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000],
-  selectorOption2: [100, 200, 300, 400, 500, 600, 700, 800, 900],
-  selectorOption3: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950],
-  selectorOption4: [0, 200, 400, 600, 800, 1000],
-  selectorOption5: [200, 400, 600, 800],
-  selectorOptionNone: [],
+  selector_option_1: [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000],
+  selector_option_2: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+  selector_option_3: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950],
+  selector_option_4: [0, 200, 400, 600, 800, 1000],
+  selector_option_5: [200, 400, 600, 800],
+  selector_option_none: [],
 };
 
 const allValues = [
@@ -118,7 +118,7 @@ export default function PaletteGenerator() {
 
   // ===== Sprachtext-Abfrage
   const getLanguageText = (key) => {
-    return getText('paletteGenerator', key, language);
+    return getText('palette_generator', key, language);
   };
 
   // ===== Zustand für visuelle Effekte =====
@@ -277,7 +277,7 @@ export default function PaletteGenerator() {
       <ColorPageToggleButton isPageColorActive={isPageColorActive} onToggle={handleTogglePageColors} />
 
       <InputGroup>
-        <Label>{getLanguageText('hexLabel')}</Label>
+        <Label>{getLanguageText('hex_label')}</Label>
         <ColorPickerWrapper>
           <ColorPicker type='color' value={state.hex} onChange={handleColorPickerChange} />
           <TextInput type='text' value={state.hex} onChange={handleHexChange} placeholder='#' />
@@ -285,11 +285,11 @@ export default function PaletteGenerator() {
       </InputGroup>
 
       <InputGroup>
-        <Label>{getLanguageText('brightLimitLabel')}</Label>
+        <Label>{getLanguageText('bright_limit_label')}</Label>
         <ColorTileWrapper>
           <ColorPreview $bgColor={getColorPreview(state.hex, state.brightLimit)} />
           <SliderText>
-            <span>{getLanguageText('adjustLabelsDarker')}</span>
+            <span>{getLanguageText('adjust_labels_darker')}</span>
           </SliderText>
           <StyledSlider
             type='range'
@@ -303,19 +303,19 @@ export default function PaletteGenerator() {
             $thumbBorderColor='var(--color-secondary-700)'
           />
           <SliderText>
-            <span>{getLanguageText('adjustLabelsLighter')}</span>
+            <span>{getLanguageText('adjust_labels_lighter')}</span>
           </SliderText>
           <SliderValue>{-(state.brightLimit - 100)}</SliderValue>
         </ColorTileWrapper>
       </InputGroup>
 
       <InputGroup>
-        <Label>{getLanguageText('darkLimitLabel')}</Label>
+        <Label>{getLanguageText('dark_limit_label')}</Label>
         <ColorTileWrapper>
           <ColorPreview $bgColor={getColorPreview(state.hex, state.darkLimit)} />
           <SliderText>
             <SliderText>
-              <span>{getLanguageText('adjustLabelsDarker')}</span>
+              <span>{getLanguageText('adjust_labels_darker')}</span>
             </SliderText>
           </SliderText>
           <StyledSlider
@@ -331,14 +331,14 @@ export default function PaletteGenerator() {
           />
 
           <SliderText>
-            <span>{getLanguageText('adjustLabelsLighter')}</span>
+            <span>{getLanguageText('adjust_labels_lighter')}</span>
           </SliderText>
           <SliderValue>{100 - state.darkLimit}</SliderValue>
         </ColorTileWrapper>
       </InputGroup>
 
       <InputGroup>
-        <Label>{getLanguageText('prefixLabel')}</Label>
+        <Label>{getLanguageText('prefix_label')}</Label>
         <TextInput
           type='text'
           value={state.prefix}
@@ -348,7 +348,7 @@ export default function PaletteGenerator() {
       </InputGroup>
 
       <InputGroup>
-        <Label>{getLanguageText('suffixLabel')}</Label>
+        <Label>{getLanguageText('suffix_label')}</Label>
         <TextInput
           type='text'
           value={state.suffix}
@@ -358,23 +358,23 @@ export default function PaletteGenerator() {
       </InputGroup>
 
       <InputGroup>
-        <Label>{getLanguageText('sortOrderLabel')}</Label>
+        <Label>{getLanguageText('sort_order_label')}</Label>
         <Select
           value={state.sortOrder}
           onChange={(e) => dispatch({ type: 'SET_VALUE', key: 'sortOrder', value: e.target.value })}>
-          <option value='asc'>{getLanguageText('sortOrderAsc')}</option>
-          <option value='desc'>{getLanguageText('sortOrderDesc')}</option>
+          <option value='asc'>{getLanguageText('sort_order_asc')}</option>
+          <option value='desc'>{getLanguageText('sort_order_desc')}</option>
         </Select>
       </InputGroup>
 
       <InputGroup>
-        <Label>{getLanguageText('outputValuesLabel')}</Label>
+        <Label>{getLanguageText('output_values_label')}</Label>
 
         <Select value={state.selectedOption} onChange={(e) => handleSelectOption(e.target.value)}>
           {Object.keys(selectorOptions).map((option) => {
             return (
               <option key={option} value={option}>
-                {getText('paletteGenerator', option, language)}
+                {getText('palette_generator', option, language)}
               </option>
             );
           })}
@@ -402,19 +402,19 @@ export default function PaletteGenerator() {
       </InputGroup>
 
       <GeneratePaletteButton width='100%' onClick={handleGeneratePalette}>
-        <FaSlidersH /> {getLanguageText('generateButton')}
+        <FaSlidersH /> {getLanguageText('generate_button')}
       </GeneratePaletteButton>
 
       {isFormChanged() && (
         <ResetFormButton width='auto' onClick={resetForm}>
-          <FaRedo /> {getLanguageText('resetButton')}
+          <FaRedo /> {getLanguageText('reset_button')}
         </ResetFormButton>
       )}
 
       {state.generatedPalette && Object.entries(state.generatedPalette).length > 0 && (
         <PaletteWrapper>
           <CopyPaletteButton width='auto' onClick={handleCopyPalette}>
-            <FaCopy /> {isCopied ? getLanguageText('copied') : getLanguageText('copyButton')}
+            <FaCopy /> {isCopied ? getLanguageText('copied') : getLanguageText('copy_button')}
           </CopyPaletteButton>
 
           <PaletteOutput>

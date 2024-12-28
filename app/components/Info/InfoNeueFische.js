@@ -16,7 +16,7 @@ import {
   InfoLink,
   Overlay,
   InfoImageWrapper,
-  InfoImageFullSize, // Direkt importiert
+  InfoImageFullSize,
 } from '@/app/components/Info/InfoStyles';
 
 export default function InfoNeueFische() {
@@ -54,7 +54,7 @@ export default function InfoNeueFische() {
           height={400}
           onClick={() => handleImageClick(`/images/neue-fische-certificate-1.png`)}
           role='button'
-          aria-label='Open Certificate Front'
+          aria-label={getLanguageText('aria_label_certficate_front')}
         />
         <InfoImageWithLink
           src={`/images/neue-fische-certificate-2.png`}
@@ -63,7 +63,7 @@ export default function InfoNeueFische() {
           height={400}
           onClick={() => handleImageClick(`/images/neue-fische-certificate-2.png`)}
           role='button'
-          aria-label='Open Certificate Back'
+          aria-label={getLanguageText('aria_label_certficate_back')}
         />
       </InfoImageContainer>
       {isImageExpanded && (
