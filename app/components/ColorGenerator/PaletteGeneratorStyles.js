@@ -306,7 +306,7 @@ export const GeneratePaletteButton = styled(Button)`
   }
 `;
 
-export const ColorPageDemoButton = styled(GeneratePaletteButton)``;
+export const ColorPageButton = styled(GeneratePaletteButton)``;
 
 export const ResetFormButton = styled(Button)`
   width: 15.6rem;
@@ -328,5 +328,5 @@ export const CopyPaletteButton = styled(Button)`
 `;
 
 export const Spacer = styled.div`
-  height: 0.4rem;
+  height: 1rem;
 `;

@@ -20,12 +20,13 @@ import {
   CheckboxGroup,
   CheckboxLabel,
   CheckboxInput,
+  ColorPageButton,
   GeneratePaletteButton,
-  ColorPageDemoButton,
   ResetFormButton,
   CopyPaletteButton,
   PaletteWrapper,
   PaletteOutput,
+  Spacer,
 } from './PaletteGeneratorStyles';
 import { FaCopy, FaSlidersH, FaRedo, FaTint } from 'react-icons/fa';
 import { generateMonochromePalette, getColorPreview } from '@/utils/paletteGeneratorUtils';
@@ -141,6 +142,22 @@ export default function PaletteGenerator() {
 
   const handleColorPickerChange = (e) => {
     dispatch({ type: 'SET_VALUE', key: 'hex', value: e.target.value });
+  };
+
+  // ===== Seite temporär einfärben =====
+  const handleColorPageButtonClick = () => {
+    const palette = generateMonochromePalette(
+      state.hex,
+      state.prefix,
+      state.suffix,
+      state.darkLimit,
+      state.brightLimit
+    );
+
+    Object.entries(palette).forEach(([key, value]) => {
+      const colorKey = key.split('-').pop();
+      document.documentElement.style.setProperty(`--color-primary-${colorKey}`, value);
+    });
   };
 
   // ===== Palette generieren =====
@@ -280,6 +297,11 @@ export default function PaletteGenerator() {
         </ColorTileWrapper>
       </InputGroup>
 
+      <ColorPageButton width='100%' onClick={handleColorPageButtonClick}>
+        <FaTint /> {getLanguageText('demoButton')}
+      </ColorPageButton>
+      <Spacer />
+
       <InputGroup>
         <Label>{getLanguageText('prefixLabel')}</Label>
         <TextInput
@@ -343,10 +365,6 @@ export default function PaletteGenerator() {
           ))}
         </CheckboxGroup>
       </InputGroup>
-
-      <ColorPageDemoButton width='100%' onClick={handleGeneratePalette}>
-        <FaTint /> {getLanguageText('demoButton')}
-      </ColorPageDemoButton>
 
       <GeneratePaletteButton width='100%' onClick={handleGeneratePalette}>
         <FaSlidersH /> {getLanguageText('generateButton')}
