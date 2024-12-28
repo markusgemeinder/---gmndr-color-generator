@@ -240,6 +240,7 @@ ol {
   --color-accordion-content-background: var(--color-white);
 
   /* Button Colors */
+  --color-button-text: var(--color-white);
   --color-button-primary: var(--color-primary-600);
   --color-button-primary-hover: var(--color-primary-650);
   --color-button-secondary: var(--color-secondary-600);
@@ -255,8 +256,10 @@ ol {
   --color-button-confirmation: var(--color-green-700);
   --color-button-confirmation-hover: var(--color-green-750);
 
-  /* Button Text ColorGenerator */
-  --color-button-text: var(--color-white);
+  /* Toggle Button Colors */
+  --color-toggle-background: var(--color-primary-50);
+  --color-toggle-border: var(--color-primary-900);
+  --color-toggle-button: var(--color-primary-750);
 
   /* Page Navigation Button Colors */
   --color-button-page-navigation: var(--color-primary-700);
@@ -305,6 +308,7 @@ ol {
   --color-accordion-content-background: var(--color-secondary-800);
 
   /* Button Colors */
+  --color-button-text: var(--color-white);
   --color-button-primary: var(--color-primary-550);
   --color-button-primary-hover: var(--color-primary-450);
   --color-button-secondary: var(--color-secondary-650);
@@ -320,8 +324,10 @@ ol {
   --color-button-confirmation: var(--color-green-750);
   --color-button-confirmation-hover: var(--color-green-700);
 
-  /* Button Text ColorGenerator */
-  --color-button-text: var(--color-white);
+  /* Toggle Button Colors */
+  --color-toggle-background: var(--color-primary-850);
+  --color-toggle-border: var(--color-primary-650);
+  --color-toggle-button: var(--color-primary-100);
 
   /* Page Navigation Button Colors */
   --color-button-page-navigation: var(--color-primary-200);

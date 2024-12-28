@@ -20,7 +20,6 @@ import {
   CheckboxGroup,
   CheckboxLabel,
   CheckboxInput,
-  ColorPageButton,
   GeneratePaletteButton,
   ResetFormButton,
   CopyPaletteButton,
@@ -28,7 +27,8 @@ import {
   PaletteOutput,
   Spacer,
 } from './PaletteGeneratorStyles';
-import { FaCopy, FaSlidersH, FaRedo, FaTint } from 'react-icons/fa';
+import ColorPageToggleButton from '@/app/components/Button/ColorPageToggleButton';
+import { FaCopy, FaSlidersH, FaRedo } from 'react-icons/fa';
 import { generateMonochromePalette, getColorPreview } from '@/utils/paletteGeneratorUtils';
 import SnapshotController from './SnapshotController';
 import { loadFormDataFromLocalStorage, saveFormDataToLocalStorage } from '@/utils/localStorageUtils';
@@ -36,7 +36,7 @@ import LanguageContext from '@/app/components/LanguageProvider';
 import { getText } from '@/lib/languageLibrary';
 
 const defaults = {
-  hex: '#456789',
+  hex: '#186595',
   prefix: '--color-',
   suffix: 'primary',
   sortOrder: 'asc',
@@ -44,8 +44,8 @@ const defaults = {
     0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000,
   ],
   selectedOption: 'optionDefault',
-  darkLimit: 20,
-  brightLimit: 95,
+  darkLimit: 10,
+  brightLimit: 98,
   generatedPalette: null,
 };
 
@@ -114,6 +114,7 @@ const initialFormData = validateFormData(loadFormDataFromLocalStorage()) || defa
 export default function PaletteGenerator() {
   const { language } = useContext(LanguageContext);
   const [state, dispatch] = useReducer(paletteReducer, initialFormData);
+  const [isPageColorActive, setIsPageColorActive] = useState(false);
 
   // ===== Sprachtext-Abfrage
   const getLanguageText = (key) => {
@@ -144,21 +145,58 @@ export default function PaletteGenerator() {
     dispatch({ type: 'SET_VALUE', key: 'hex', value: e.target.value });
   };
 
-  // ===== Seite temporär einfärben =====
-  const handleColorPageButtonClick = () => {
-    const palette = generateMonochromePalette(
-      state.hex,
-      state.prefix,
-      state.suffix,
-      state.darkLimit,
-      state.brightLimit
-    );
-
+  // ===== Temporäre Palette anwenden =====
+  const applyPaletteToPage = (palette) => {
     Object.entries(palette).forEach(([key, value]) => {
       const colorKey = key.split('-').pop();
       document.documentElement.style.setProperty(`--color-primary-${colorKey}`, value);
     });
   };
+
+  // ===== Seite einfärben basierend auf Toggle =====
+  const handleTogglePageColors = () => {
+    setIsPageColorActive((prev) => {
+      const newValue = !prev;
+
+      if (newValue) {
+        // Aktivieren: Aktuellen Zustand einfärben
+        const palette = generateMonochromePalette(
+          state.hex,
+          state.prefix,
+          state.suffix,
+          state.darkLimit,
+          state.brightLimit
+        );
+        applyPaletteToPage(palette);
+      } else {
+        // Deaktivieren: Standard-Palette anwenden
+        const defaultPalette = generateMonochromePalette(
+          defaults.hex,
+          defaults.prefix,
+          defaults.suffix,
+          defaults.darkLimit,
+          defaults.brightLimit
+        );
+        applyPaletteToPage(defaultPalette);
+      }
+
+      return newValue;
+    });
+  };
+
+  // Automatisches Anwenden der Einfärbung bei Änderungen des Zustands
+  useEffect(() => {
+    if (isPageColorActive) {
+      const palette = generateMonochromePalette(
+        state.hex,
+        state.prefix,
+        state.suffix,
+        state.darkLimit,
+        state.brightLimit
+      );
+      applyPaletteToPage(palette);
+    }
+  }, [state, isPageColorActive]);
 
   // ===== Palette generieren =====
   const handleGeneratePalette = () => {
@@ -236,6 +274,8 @@ export default function PaletteGenerator() {
 
       <Title>{getLanguageText('title')}</Title>
 
+      <ColorPageToggleButton isPageColorActive={isPageColorActive} onToggle={handleTogglePageColors} />
+
       <InputGroup>
         <Label>{getLanguageText('hexLabel')}</Label>
         <ColorPickerWrapper>
@@ -296,11 +336,6 @@ export default function PaletteGenerator() {
           <SliderValue>{100 - state.darkLimit}</SliderValue>
         </ColorTileWrapper>
       </InputGroup>
-
-      <ColorPageButton width='100%' onClick={handleColorPageButtonClick}>
-        <FaTint /> {getLanguageText('demoButton')}
-      </ColorPageButton>
-      <Spacer />
 
       <InputGroup>
         <Label>{getLanguageText('prefixLabel')}</Label>
