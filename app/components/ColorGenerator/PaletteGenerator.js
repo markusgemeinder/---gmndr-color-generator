@@ -32,7 +32,7 @@ import { FaCopy, FaSlidersH, FaRedo } from 'react-icons/fa';
 import { generateMonochromePalette, getColorPreview } from '@/utils/paletteGeneratorUtils';
 import SnapshotController from './SnapshotController';
 import { loadFormDataFromLocalStorage, saveFormDataToLocalStorage } from '@/utils/localStorageUtils';
-import LanguageContext from '@/app/components/LanguageProvider';
+import LanguageContext from '@/app/components/Provider/LanguageProvider';
 import { getText } from '@/lib/languageLibrary';
 
 const defaults = {

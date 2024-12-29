@@ -2,7 +2,7 @@
 
 import { useContext } from 'react';
 import styled from 'styled-components';
-import LanguageContext from '@/app/components/LanguageProvider';
+import LanguageContext from '@/app/components/Provider/LanguageProvider';
 import { getText } from '@/lib/languageLibrary';
 
 const ModalOverlay = styled.div`
