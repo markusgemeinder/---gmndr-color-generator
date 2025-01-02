@@ -5,49 +5,65 @@
      5	│   ├── components
      6	│   │   ├── Button
      7	│   │   │   ├── Button.js
-     8	│   │   │   ├── NavigationButtonNextPage.js
-     9	│   │   │   ├── NavigationButtonPageUp.js
-    10	│   │   │   ├── NavigationButtonPreviousPage.js
-    11	│   │   │   ├── NavigationButtonTemplate.js
-    12	│   │   │   └── ThemeToggleButton.js
-    13	│   │   ├── ColorGenerator
-    14	│   │   │   ├── PaletteGenerator.js
-    15	│   │   │   ├── PaletteGeneratorStyles.js
-    16	│   │   │   ├── SnapshotController.js
-    17	│   │   │   ├── SnapshotControllerModalPopup.js
-    18	│   │   │   └── SnapshotControllerStyles.js
-    19	│   │   ├── Common
-    20	│   │   │   ├── CommonStyles.js
-    21	│   │   │   ├── ScrollToTop.js
-    22	│   │   │   └── ThemeProvider.js
+     8	│   │   │   ├── ColorPageToggleButton.js
+     9	│   │   │   ├── NavigationButtonNextPage.js
+    10	│   │   │   ├── NavigationButtonPageUp.js
+    11	│   │   │   ├── NavigationButtonPreviousPage.js
+    12	│   │   │   ├── NavigationButtonTemplate.js
+    13	│   │   │   └── ThemeToggleButton.js
+    14	│   │   ├── ColorGenerator
+    15	│   │   │   ├── PaletteGenerator.js
+    16	│   │   │   ├── PaletteGeneratorStyles.js
+    17	│   │   │   ├── SnapshotController.js
+    18	│   │   │   ├── SnapshotControllerModalPopup.js
+    19	│   │   │   └── SnapshotControllerStyles.js
+    20	│   │   ├── Common
+    21	│   │   │   ├── CommonStyles.js
+    22	│   │   │   └── ScrollToTop.js
     23	│   │   ├── Info
     24	│   │   │   ├── InfoContact.js
     25	│   │   │   ├── InfoNeueFische.js
     26	│   │   │   ├── InfoProject.js
     27	│   │   │   ├── InfoStyles.js
     28	│   │   │   └── InfoTechstack.js
-    29	│   │   ├── LanguageProvider.js
-    30	│   │   └── Layout
-    31	│   │       ├── Footer.js
-    32	│   │       ├── Logo.js
-    33	│   │       ├── MainContainer.js
-    34	│   │       ├── Navigation.js
-    35	│   │       └── NavigationStyles.js
-    36	│   ├── globals.css
-    37	│   ├── info
-    38	│   │   └── page.js
-    39	│   ├── layout.js
-    40	│   └── page.js
-    41	├── jsconfig.json
-    42	├── lib
-    43	│   └── languageLibrary.js
-    44	├── next.config.mjs
-    45	├── package.json
-    46	├── postcss.config.mjs
-    47	├── tailwind.config.js
-    48	└── utils
-    49	    ├── getLanguageFromCookies.js
-    50	    ├── localStorageUtils.js
-    51	    └── paletteGeneratorUtils.js
+    29	│   │   ├── Layout
+    30	│   │   │   ├── Footer.js
+    31	│   │   │   ├── Logo.js
+    32	│   │   │   ├── MainContainer.js
+    33	│   │   │   ├── Navigation.js
+    34	│   │   │   └── NavigationStyles.js
+    35	│   │   └── Provider
+    36	│   │       ├── LanguageProvider.js
+    37	│   │       └── ThemeProvider.js
+    38	│   ├── globals.css
+    39	│   ├── info
+    40	│   │   └── page.js
+    41	│   ├── layout.js
+    42	│   └── page.js
+    43	├── jsconfig.json
+    44	├── lib
+    45	│   └── languageLibrary.js
+    46	├── next.config.mjs
+    47	├── package.json
+    48	├── postcss.config.mjs
+    49	├── public
+    50	│   ├── favicon
+    51	│   │   └── gmndr.ico
+    52	│   └── images
+    53	│       ├── github-logo.svg
+    54	│       ├── gmndr-demo-bits-logo.svg
+    55	│       ├── gmndr-pic-1.jpg
+    56	│       ├── gmndr-pic-2.jpg
+    57	│       ├── google-logo.svg
+    58	│       ├── neue-fische-certificate-1.png
+    59	│       ├── neue-fische-certificate-2.png
+    60	│       ├── neue-fische-logo.png
+    61	│       ├── next-js-logo-01.png
+    62	│       └── next-js-logo-02.png
+    63	├── tailwind.config.js
+    64	└── utils
+    65	    ├── getLanguageFromCookies.js
+    66	    ├── localStorageUtils.js
+    67	    └── paletteGeneratorUtils.js
       	
-    52	11 directories, 40 files
+    68	15 directories, 52 files
