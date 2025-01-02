@@ -33,12 +33,9 @@ const LogoContainer = styled.div`
 `;
 
 export default function Logo({ onClick }) {
-  const timestamp = new Date().getTime();
-
   return (
     <LogoContainer onClick={onClick}>
       <img src={`/images/gmndr-demo-bits-logo.svg`} alt='Logo' />
-      {/* <img src={`/images/gmndr-demo-bits-logo.svg?${timestamp}`} alt='Logo' /> */}
     </LogoContainer>
   );
 }
